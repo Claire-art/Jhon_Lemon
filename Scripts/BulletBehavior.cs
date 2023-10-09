@@ -3,7 +3,7 @@ using UnityEngine;
 public class BulletBehavior : MonoBehaviour
 {
     public GameObject explosionEffect;
-    public static int enemyCount = 0; // Add this
+    public static int enemyCount = 0;
 
     void Start()
     {

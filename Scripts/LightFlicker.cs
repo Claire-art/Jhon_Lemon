@@ -7,18 +7,24 @@ using UnityEditor;
 
 public class LightFlicker : MonoBehaviour
 {
+
+    // 빛의 깜빡임 모드를 결정하는 열거형 변수 FlickerMode를 선언한다. 
+
     public enum FlickerMode
     {
         Random,
         AnimationCurve
     }
-    
+
+    // 라이트 컴포넌트, 렌더러, 깜빡임 모드, 최소/최대 강도, 깜빡임 지속 시간 등에 대한 참조와 변수들을 선언한다.
     public Light flickeringLight;
     public Renderer flickeringRenderer;
     public FlickerMode flickerMode;
     public float lightIntensityMin = 1.25f;
     public float lightIntensityMax = 2.25f;
     public float flickerDuration = 0.075f;
+
+    // 애니메이션 커브를 이용하여 강도 변화를 조절할 수 있게 한다.
     public AnimationCurve intensityCurve;
 
     Material m_FlickeringMaterial;
@@ -41,6 +47,9 @@ public class LightFlicker : MonoBehaviour
 
     void Update()
     {
+
+        // 매 프레임마다 라이트의 강도와 재질의 Emission 색상을 업데이트 한다.
+
         m_Timer += Time.deltaTime;
 
         if (flickerMode == FlickerMode.Random)
@@ -99,6 +108,9 @@ public class LightFlickerEditor : Editor
         m_FlickerDurationProp = serializedObject.FindProperty ("flickerDuration");
         m_IntensityCurveProp = serializedObject.FindProperty ("intensityCurve");
     }
+
+    // 편집기 확장을 위한 클래스를 선언한다.
+    // 이 클래스는 LightFlicker 스크립트의 Inspector 뷰를 커스터마이즈한다.
 
     public override void OnInspectorGUI ()
     {
